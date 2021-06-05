@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { fetchTransportServices } from '../api/api'
+import Menu from '../Components/Menu/Menu'
 import { TFLServicesContainer } from './TFLServices.styled'
 
 const TFLServices = () => {
@@ -17,11 +18,11 @@ const TFLServices = () => {
         }
         fetchTFLServices()
     }, [])
-    
+
     return (
         <TFLServicesContainer>
             <div>
-                Menu
+                <Menu services={TFLServiceData} />
             </div>
             <div>Results</div>
         </TFLServicesContainer>
