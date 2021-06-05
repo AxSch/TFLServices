@@ -1,15 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 const MenuItem = ({ service }) => {
-    const [isDisrupted, setIsDisrupted] = useState(false)
-    
-    useEffect(() => {
-        const lineStatuses = service.lineStatuses.filter(line => line.statusSeverity !== 10)
-        if (lineStatuses.length > 0) {
-            setIsDisrupted(true)
-        }
-    }, [isDisrupted])
-
     const renderNightIcon = (serviceTypes) => {
         const nightService = serviceTypes.filter(serviceType => serviceType.name === 'Night')
         if (nightService.length > 0) {
@@ -40,28 +31,10 @@ const MenuItem = ({ service }) => {
         }
     }
 
-    const renderDisruptions = (lineStatus) => {
-        const lineStatuses = lineStatus.filter(line => line.statusSeverity !== 10)
-        if (lineStatuses.length > 0) {
-            return lineStatuses.map(line => {
-                return (
-                    <li>
-                        {line.reason}
-                    </li>
-                )
-            })
-        }
-    }
-
     return (
         <li>
             <div>
                 <h3>{service.name}({service.modeName}) {renderDisruptionIcon(service.lineStatuses)} {renderNightIcon(service.serviceTypes)}</h3>
-                {isDisrupted ?
-                    <ul>
-                        {renderDisruptions(service.lineStatuses)}
-                    </ul>
-                    : null}
             </div>
         </li>
     )
