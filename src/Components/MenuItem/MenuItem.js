@@ -1,6 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { setCurrentTFLService } from '../../reducers/transportServices/transportServicesSlice'
+import { Item, DisruptionIcons } from './MenuItem.styled'
 
 const MenuItem = ({ service }) => {
     const dispatch = useDispatch()
@@ -8,22 +10,27 @@ const MenuItem = ({ service }) => {
     const renderNightIcon = (serviceTypes) => {
         const nightService = serviceTypes.filter(serviceType => serviceType.name === 'Night')
         if (nightService.length > 0) {
-            return (
-                <>Icon - night</>
-            )
+            return <FontAwesomeIcon icon="cloud-moon" />
         }
     }
 
     const renderDisruptionIcon = (lineStatus) => {
         const lineStatuses = lineStatus.filter(line => line.statusSeverity !== 10)
+        let statusSeverity
         if (lineStatuses.length > 0) {
-            return lineStatuses.map(line => {
+            statusSeverity = lineStatuses.map(line => {
                 return line.statusSeverityDescription
             })
         } else {
-            return lineStatus.map(line => {
+            statusSeverity = lineStatus.map(line => {
                 return line.statusSeverityDescription
             })
+        }
+
+        if (statusSeverity.length === 1 && statusSeverity[0] === 'Good Service') {
+            return <FontAwesomeIcon icon="check-circle" />
+        } else {
+            return <FontAwesomeIcon icon="exclamation-circle" />
         }
     }
 
@@ -32,15 +39,15 @@ const MenuItem = ({ service }) => {
     }
 
     return (
-        <li onClick={() => handleOnClick()}>
+        <Item onClick={() => handleOnClick()}>
             <div>
                 {service.name}
             </div>
-            <div>
+            <DisruptionIcons>
                 {renderDisruptionIcon(service.lineStatuses)}
                 {renderNightIcon(service.serviceTypes)}
-            </div>
-        </li>
+            </DisruptionIcons>
+        </Item>
     )
 }
 
