@@ -1,6 +1,10 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { setCurrentTFLService } from '../../reducers/transportServices/transportServicesSlice'
 
 const MenuItem = ({ service }) => {
+    const dispatch = useDispatch()
+
     const renderNightIcon = (serviceTypes) => {
         const nightService = serviceTypes.filter(serviceType => serviceType.name === 'Night')
         if (nightService.length > 0) {
@@ -14,27 +18,27 @@ const MenuItem = ({ service }) => {
         const lineStatuses = lineStatus.filter(line => line.statusSeverity !== 10)
         if (lineStatuses.length > 0) {
             return lineStatuses.map(line => {
-                return (
-                    <>
-                        <span>{line.statusSeverityDescription}</span>
-                    </>
-                )
+                return line.statusSeverityDescription
             })
         } else {
             return lineStatus.map(line => {
-                return (
-                    <>
-                        <span>{line.statusSeverityDescription} - No service disruptions</span>
-                    </>
-                )
+                return line.statusSeverityDescription
             })
         }
     }
 
+    const handleOnClick = () => {
+        dispatch(setCurrentTFLService(service))
+    }
+
     return (
-        <li>
+        <li onClick={() => handleOnClick()}>
             <div>
-                <h3>{service.name}({service.modeName}) {renderDisruptionIcon(service.lineStatuses)} {renderNightIcon(service.serviceTypes)}</h3>
+                {service.name}
+            </div>
+            <div>
+                {renderDisruptionIcon(service.lineStatuses)}
+                {renderNightIcon(service.serviceTypes)}
             </div>
         </li>
     )
