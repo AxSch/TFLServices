@@ -5,6 +5,9 @@ const TFLServicesContainer = styled.div`
     justify-content: space-between;
     flex-wrap: wrap;
 
+    @media(min-width: 768px) {
+        flex-wrap: nowrap;
+    }
 `
 
 export {
