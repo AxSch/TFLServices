@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { TFLServiceContainer, ServiceHeader, ServiceDisruptions, ServiceDisruptionsList, DisruptionsListItem } from './TFLService.styled'
 
 const TFLService = ({ service }) => {
     const [isDisrupted, setIsDisrupted] = useState(false)
@@ -6,7 +7,7 @@ const TFLService = ({ service }) => {
 
     useEffect(() => {
         if (severeLineStatuses.length > 0) {
-            if (severeLineStatuses[0].statusSeverity !== 10 ) {
+            if (severeLineStatuses[0].statusSeverity !== 10) {
                 setIsDisrupted(true)
             }
         } else {
@@ -34,34 +35,35 @@ const TFLService = ({ service }) => {
         if (severeLineStatuses.length > 0) {
             return severeLineStatuses.map((line, index) => {
                 return (
-                    <li key={index}>
+                    <DisruptionsListItem key={index}>
                         {line.reason}
-                    </li>
+                    </DisruptionsListItem>
                 )
             })
         }
     }
+
     const renderDisruptions = () => {
         if (isDisrupted) {
             return (
-                <div>
+                <ServiceDisruptions>
                     <h3>Disruptions:</h3>
-                    <ul>
+                    <ServiceDisruptionsList>
                         {renderDisruptionsList()}
-                    </ul>
-                </div>
+                    </ServiceDisruptionsList>
+                </ServiceDisruptions>
             )
         }
     }
-    // console.log(isDisrupted)
+
     return (
-        <div>
-            <div>
+        <TFLServiceContainer>
+            <ServiceHeader>
                 <h2>{service.name}</h2>
-                <span>{renderDisruptionHeader()}</span>
-            </div>
+                {renderDisruptionHeader()}
+            </ServiceHeader>
             {renderDisruptions()}
-        </div>
+        </TFLServiceContainer>
     )
 }
 
