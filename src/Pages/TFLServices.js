@@ -38,10 +38,8 @@ const TFLServices = () => {
         } else {
             return (
                 <>
-                    <div>
-                        <Menu services={TFLServiceData} />
-                    </div>
-                    <div>{currentTFLService && Object.keys(currentTFLService).length > 0 ? <TFLService service={currentTFLService} /> : null}</div>
+                    <Menu services={TFLServiceData} />
+                    {currentTFLService && Object.keys(currentTFLService).length > 0 ? <TFLService service={currentTFLService} /> : null}
                 </>
             )
         }
