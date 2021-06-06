@@ -1,20 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import MenuItem from '../MenuItem/MenuItem'
+import * as lo from 'lodash'
+import { MenuList } from './Menu.styled'
 
 const Menu = ({ services }) => {
+    useEffect(() => {
+
+    })
     const renderMenuItems = () => {
-        return Object.keys(services).map(service => {
-            return (
-                <div key={service}>
-                    <MenuItem service={services[service]}></MenuItem>
-                </div>
-            )
-        })
+        const sortedServices = lo.sortBy(services,[(service) => service.modeName ])
+        return sortedServices.map(service => <MenuItem key={service.id} service={service} />)
     }
+
     return (
-        <ul>
+        <MenuList>
             {renderMenuItems()}
-        </ul>
+        </MenuList>
     )
 }
 
