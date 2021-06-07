@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from '@testing-library/react';
 import TFLService from './TFLService'
 
-const mockService = {
+export const mockService = {
     $type: "Tfl.Api.Presentation.Entities.Line, Tfl.Api.Presentation.Entities",
     created: "2021-06-03T11:02:50.87Z",
     crowding: {$type: "Tfl.Api.Presentation.Entities.Crowding, Tfl.Api.Presentation.Entities"},
