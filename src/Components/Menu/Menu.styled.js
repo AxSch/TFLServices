@@ -4,7 +4,7 @@ const MenuList = styled.ul`
     width: 90%;
     padding-left: 0;
     margin: 1rem 1.4rem;
-    border: 1px solid black;
+    border: 1px solid #d8d8d8;
     list-style-type: none;
     text-align: left;
     border-radius: 4px;
@@ -22,6 +22,7 @@ const MenuSearch = styled.input`
     width: 100%;
     margin-top: 1rem;
     padding: 1rem;
+    border: 1px solid #e5e5e5;
 `
 
 const MenuSearchLabel = styled.label`

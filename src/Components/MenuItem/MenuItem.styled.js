@@ -3,10 +3,10 @@ import styled from 'styled-components'
 const Item = styled.li`
     padding: 0.7rem 0.5rem;
     cursor: pointer;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #d8d8d8;
     
     &:hover {
-        background-color: red;
+        background-color: #ececec;
         border-radius: 4px;
     }
 

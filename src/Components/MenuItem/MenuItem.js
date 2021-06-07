@@ -10,7 +10,7 @@ const MenuItem = ({ service }) => {
     const renderNightIcon = (serviceTypes) => {
         const nightService = serviceTypes.filter(serviceType => serviceType.name === 'Night')
         if (nightService.length > 0) {
-            return <FontAwesomeIcon icon="cloud-moon" />
+            return <FontAwesomeIcon icon="cloud-moon" color={'#141852'} />
         }
     }
 
@@ -28,9 +28,9 @@ const MenuItem = ({ service }) => {
         }
 
         if (statusSeverity.length === 1 && statusSeverity[0] === 'Good Service') {
-            return <FontAwesomeIcon icon="check-circle" />
+            return <FontAwesomeIcon icon="check-circle" color={'#4BB543'}/>
         } else {
-            return <FontAwesomeIcon icon="exclamation-circle" />
+            return <FontAwesomeIcon icon="exclamation-circle" color={'#F32013'} />
         }
     }
 
