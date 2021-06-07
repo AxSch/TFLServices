@@ -10,7 +10,7 @@ const MenuItem = ({ service }) => {
     const renderNightIcon = (serviceTypes) => {
         const nightService = serviceTypes.filter(serviceType => serviceType.name === 'Night')
         if (nightService.length > 0) {
-            return <FontAwesomeIcon icon="cloud-moon" color={'#141852'} />
+            return <FontAwesomeIcon data-testid="nightServiceIcon" icon="cloud-moon" color={'#141852'} />
         }
     }
 
@@ -26,11 +26,10 @@ const MenuItem = ({ service }) => {
                 return line.statusSeverityDescription
             })
         }
-
         if (statusSeverity.length === 1 && statusSeverity[0] === 'Good Service') {
-            return <FontAwesomeIcon icon="check-circle" color={'#4BB543'}/>
+            return <FontAwesomeIcon data-testid="goodSeviceIcon" icon="check-circle" color={'#4BB543'}/>
         } else {
-            return <FontAwesomeIcon icon="exclamation-circle" color={'#F32013'} />
+            return <FontAwesomeIcon data-testid="disruptionsIcon" icon="exclamation-circle" color={'#F32013'} />
         }
     }
 
@@ -40,7 +39,7 @@ const MenuItem = ({ service }) => {
     }
 
     return (
-        <Item onClick={() => handleOnClick()}>
+        <Item onClick={() => handleOnClick()} data-testid="menuItem">
             <div>
                 {service.name}
             </div>
