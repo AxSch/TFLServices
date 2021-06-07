@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { setCurrentTFLService } from '../../reducers/transportServices/transportServicesSlice'
+import { setCurrentTFLService, setIsSearch } from '../../reducers/transportServices/transportServicesSlice'
 import { Item, DisruptionIcons } from './MenuItem.styled'
 
 const MenuItem = ({ service }) => {
@@ -36,6 +36,7 @@ const MenuItem = ({ service }) => {
 
     const handleOnClick = () => {
         dispatch(setCurrentTFLService(service))
+        dispatch(setIsSearch(false))
     }
 
     return (
