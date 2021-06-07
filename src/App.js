@@ -3,7 +3,12 @@ import TFLServices from './Pages/TFLServices';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCloudMoon, faCheckCircle, faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faCloudMoon, faCheckCircle, faExclamationCircle)
+
+export const registerIcons = () => {
+  library.add(faCloudMoon, faCheckCircle, faExclamationCircle)
+}
+
+registerIcons()
 
 function App() {
   return (
