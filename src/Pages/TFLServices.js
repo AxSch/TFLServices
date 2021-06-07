@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchTransportServices } from '../api/api'
+import { fetchTransportServices, fetchBikePoints } from '../api/api'
+import BikeService from '../Components/BikeService/BikeService'
 import Menu from '../Components/Menu/Menu'
 import TFLService from '../Components/TFLService/TFLService'
-import { selectCurrentTFLService, setCurrentTFLService } from '../reducers/transportServices/transportServicesSlice'
+import { 
+    selectCurrentTFLService,
+    setCurrentTFLService,
+    setPreviousResults, 
+    selectPreviousBikeResults,
+    setIsSearch,
+    selectIsSearch
+ } from '../reducers/transportServices/transportServicesSlice'
 import { TFLServicesContainer } from './TFLServices.styled'
 
 const TFLServices = () => {
     const [TFLServiceData, setTFLServiceData] = useState({})
+    const [searchTerm, setSearchTerm] = useState('')
     const [isLoading, setIsLoading] = useState(true)
+    const [isNewSearch, setIsNewSearch] = useState(false)
+    const [bikePoints, setBikePoints] = useState({})
     const currentTFLService = useSelector(selectCurrentTFLService)
+    const previousBikeSearch = useSelector(selectPreviousBikeResults)
+    const isSearch = useSelector(selectIsSearch)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -25,8 +38,36 @@ const TFLServices = () => {
         }
         fetchTFLServices()
         setIsLoading(false)
+        dispatch(setIsSearch(false))
         dispatch(setCurrentTFLService({}))
     }, [dispatch])
+
+    const handleSearch = (value) => {
+        setSearchTerm(value)
+    }
+
+    const fetchTFLBikes = async (query) => {
+        const bikePointsData = await fetchBikePoints(query)
+        const bikeSearchObj = {
+            searchTerm: query,
+            bikePointsData
+        }
+
+        setBikePoints(bikeSearchObj)
+        dispatch(setPreviousResults(bikeSearchObj))
+    }
+
+    const submitSearch = (e) => {
+        e.preventDefault()
+        if (previousBikeSearch.searchTerm !== searchTerm) {
+            setIsNewSearch(true)
+            fetchTFLBikes(searchTerm)
+        } else {
+            setIsNewSearch(false)
+        }
+
+        dispatch(setIsSearch(true))
+    }
 
     const renderServices = () => {
         if (isLoading) {
@@ -38,8 +79,10 @@ const TFLServices = () => {
         } else {
             return (
                 <>
-                    <Menu services={TFLServiceData} />
-                    {currentTFLService && Object.keys(currentTFLService).length > 0 ? <TFLService service={currentTFLService} /> : null}
+                    <Menu services={TFLServiceData} handleSearch={handleSearch} onSubmit={submitSearch} />
+                    {currentTFLService && Object.keys(currentTFLService).length > 0 && !isSearch ? <TFLService service={currentTFLService} /> : null}
+                    {isSearch ? <BikeService currentBikeObj={bikePoints} previousBikeObj={previousBikeSearch} isNewSearch={isNewSearch} /> : null}
+
                 </>
             )
         }
