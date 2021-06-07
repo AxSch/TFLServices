@@ -18,6 +18,24 @@ const MenuList = styled.ul`
     }
 `
 
+const MenuSearch = styled.input`
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+`
+
+const MenuSearchLabel = styled.label`
+    padding: 0.4rem;
+    margin-bottom: 1.2rem;
+`
+
+const MenuForm = styled.form`
+    padding-top: 1rem;
+`
+
 export {
-    MenuList
+    MenuList,
+    MenuSearch,
+    MenuSearchLabel,
+    MenuForm
 }
