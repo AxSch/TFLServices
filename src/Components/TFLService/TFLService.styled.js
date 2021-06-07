@@ -22,6 +22,11 @@ const ServiceHeader = styled.div`
     display: flex;
     flex-direction: column;
 
+    @media(min-width: 768px) {
+        width: 100%;
+        margin-bottom: 1.2rem;
+    }
+
     @media(min-width: 1024px) {
         align-items: start;
     }
@@ -32,9 +37,18 @@ const ServiceDisruptions = styled.div`
     flex-wrap: wrap;
     justify-content: center;
 
+    h3 {
+        width: 100%;
+        margin-bottom: 0;
+    }
+
     @media(min-width: 1024px) {
         align-content: start;
         justify-content: start;
+
+        h3 {
+            text-align:left;
+        }
     }
 `
 
@@ -43,8 +57,9 @@ const ServiceDisruptionsList = styled.ul`
     text-align: left;
     padding-left: 1.4rem;
 
-    @media(min-width: 1024px) {
+    @media(min-width: 768px) {
         padding-left: 0; 
+        margin: 0;
     }
 `
 
