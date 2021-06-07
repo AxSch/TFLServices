@@ -18,13 +18,13 @@ const TFLService = ({ service }) => {
     const renderDisruptionHeader = () => {
         if (severeLineStatuses.length > 0) {
             return (
-                <span>
+                <span data-testid="hasDisruptions">
                     Service is currently suffering disruptions
                 </span>
             )
         } else {
             return (
-                <span>
+                <span data-testid="noDisruptions">
                     No service disruptions
                 </span>
             )
@@ -48,7 +48,7 @@ const TFLService = ({ service }) => {
             return (
                 <ServiceDisruptions>
                     <h3>Disruptions:</h3>
-                    <ServiceDisruptionsList>
+                    <ServiceDisruptionsList data-testid="disruptionsList">
                         {renderDisruptionsList()}
                     </ServiceDisruptionsList>
                 </ServiceDisruptions>
@@ -57,7 +57,7 @@ const TFLService = ({ service }) => {
     }
 
     return (
-        <TFLServiceContainer>
+        <TFLServiceContainer data-testid="tflService">
             <ServiceHeader>
                 <h2>{service.name}</h2>
                 {renderDisruptionHeader()}

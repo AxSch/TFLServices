@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TFLService should render successfully 1`] = `
+<div>
+  <div
+    class="sc-bdnxRM bkQdMX"
+    data-testid="tflService"
+  >
+    <div
+      class="sc-gtsrHT fHwCUC"
+    >
+      <h2>
+        London Overground
+      </h2>
+      <span
+        data-testid="hasDisruptions"
+      >
+        Service is currently suffering disruptions
+      </span>
+    </div>
+    <div
+      class="sc-dlnjwi cXkqvs"
+    >
+      <h3>
+        Disruptions:
+      </h3>
+      <ul
+        class="sc-hKFxyN jUKCvu"
+        data-testid="disruptionsList"
+      >
+        <li
+          class="sc-eCApnc isxqBE"
+        >
+          Changes to Stratford to Richmond services on Mondays to Fridays from Monday 17 May until Friday 18 June: The following trains from Stratford to Richmond will not run: 06:05, 07:18, 08:30, 09:40, 10:59, 12:14, 13:29, 14:43, 15:52, 17:05, 18:16, 19:29, 20:44, 21:59 and 23:14. The 22:59 is now the last train from Stratford for stations from Willesden Junction to Richmond and Clapham Junction - later trains will run from Stratford as far as Willesden Junction only. The following trains from Richmond to Stratford will not run: 06:08. 07:21, 08:34, 09:47, 11:01, 12:17, 13:31, 14:45, 15:56, 17:08, 18:20, 19:32, 20:47, 22:01 and 23:17
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
